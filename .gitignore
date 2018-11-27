@@ -1,0 +1,12 @@
+
+src/main/resources/certificates/
+
+src/main/resources/application-qa\.properties
+
+src/main/resources/logback-spring\.xml
+
+\.project
+
+build/
+
+\.gradle/
