@@ -20,7 +20,7 @@ public class AlexaDevConfig {
 	@Bean
 	public ServletRegistrationBean<SpeechletServlet> registerSpeechletServlet() {
 		// force system property to no validate signed request before we create the speechlet
-		System.setProperty("com.amazon.speech.speechlet.servlet.disableRequestSignatureCheck", "true");
+		//System.setProperty("com.amazon.speech.speechlet.servlet.disableRequestSignatureCheck", "true");
 		
 		SpeechletServlet speechletServlet = new SpeechletServlet();
 		

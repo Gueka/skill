@@ -24,7 +24,12 @@ sourceCompatibility = 1.8
 repositories {
 	mavenCentral()
 }
-
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
 dependencies {
 	compileOnly 'org.projectlombok:lombok:1.18.4'
 	
@@ -37,4 +42,16 @@ dependencies {
 		
 	}
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
 }
+
+ext.greeting = project.hasProperty('profiles') ? project.getProperty('profiles') : 'prod'
+
+bootRun {
+  args = ["--spring.profiles.active=" + profiles, 
+  	// force system property to no validate signed request before we create the speechlet
+  	"com.amazon.speech.speechlet.servlet.disableRequestSignatureCheck=true"]
+}
+
+
