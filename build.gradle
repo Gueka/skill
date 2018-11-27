@@ -1,0 +1,40 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+plugins {
+	id 'net.ltgt.apt' version '0.10'
+}
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'net.gueka'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compileOnly 'org.projectlombok:lombok:1.18.4'
+	
+	apt 'org.projectlombok:lombok:1.18.4'
+
+	implementation('io.github.dibog:cloudwatch-logback-appender:1.0.0')
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	compile('com.amazon.alexa:alexa-skills-kit:1.8.1') {
+		exclude group:'org.slf4j', module:'slf4j-log4j12'
+		
+	}
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
